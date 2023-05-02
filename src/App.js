@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-console.log(process.env.LOCATION_ENV);
+console.log(process.env.LOCATION_ENV_KEY);
 class App extends Component {
   state = {
     searchquery: '',
