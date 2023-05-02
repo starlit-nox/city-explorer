@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-console.log(process.env.LOCATION_ENV_KEY);
+console.log(process.env.REACT_APP_MAP_KEY);
 class App extends Component {
   state = {
     searchquery: '',
@@ -9,7 +9,7 @@ class App extends Component {
 
   getLocation = async () => {
     
-    const API = `https://us1.locationiq.com/v1/search.php?key=${process.env.LOCATION_ENV_KEY}&q=${this.state.searchquery}&format=json`;
+    const API = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_MAP_KEY}&q=${this.state.searchquery}&format=json`;
     
     const res = await axios.get(API);
     console.log(res.data[0])
