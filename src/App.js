@@ -22,7 +22,7 @@ class App extends Component {
         <input onChange={(e) => this.setState({ searchquery: e.target.value })} placeholder="search for a city"/>
         <button onClick={this.getLocation}>Explore!</button>
         {this.state.location.place_id && 
-          <h2>The city is: {this.state.location.display_name} @ {this.state.location.lat},{this.state.location.lon} @ {this.state.location.img}</h2>
+          <h2>The city is: {this.state.location.display_name} @ {this.state.location.lat},{this.state.location.lon} @ {this.state.location.icon}</h2>
           // added location for lat and lon above
         }
       </>
