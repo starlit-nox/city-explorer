@@ -10,12 +10,12 @@ class App extends Component {
   };
 
   getLocation = async () => {
-    const API = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.searchquery}&format=json`;
+    const API = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_MAP_KEY}&q=${this.state.searchquery}&format=json`;
     const res = await axios.get(API);
     const { lat, lon, display_name } = res.data[0];
     this.setState({ location: { lat, lon, display_name } });
 
-    const mapAPI = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${lat},${lon}&zoom=13`;
+    const mapAPI = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_MAP_KEY}&center=${lat},${lon}&zoom=13`;
     this.setState({ mapUrl: mapAPI });
   };
 
