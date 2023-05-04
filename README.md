@@ -32,8 +32,8 @@ Name of feature: Map & Location Viewer
 
 Estimate of time needed to complete: 12 Hours
 
-Start time: 10:00 AM
+Start time: 10:00 AM Tuesday
 
-Finish time: _____
+Finish time: 3:00 PM Wednesday
 
-Actual time needed to complete: _____
+Actual time needed to complete: 14 Hours
