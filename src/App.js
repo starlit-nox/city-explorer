@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import { Button, Form, Col, Row } from 'react-bootstrap';
+import './App.css';
+
 
 class App extends Component {
   state = {
@@ -25,6 +27,7 @@ class App extends Component {
   render() {
     return (
       <div className="mt-5 container">
+        <h1>City Explorer Application</h1>
         <Form>
           <Form.Group as={Row} controlId="formSearch">
             <Form.Label column sm={2}>
