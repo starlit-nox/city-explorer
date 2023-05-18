@@ -11,6 +11,21 @@ class App extends Component {
     mapUrl: ''
   };
 
+// getting the weather from server.js
+setWeather = (val) =>
+this.setState({findWeather: val});
+
+  getWeather = async (e) => {
+    const API = `https://city-explorer-lgyr.onrender.com/weather${e.target.value}`; // this is targeting the /weather in the backend
+    try {
+      let response = await axios.get(API).then((res) => {
+        this.setWeather(res.data);
+      });
+    } catch {e} 
+    }
+  }
+
+  
   // this is where you put the API key
   getLocation = async () => {
     // API is being set here with a constant & variable to be able to call it in the functions below
@@ -42,7 +57,7 @@ class App extends Component {
               />
             </Col>
             <Col sm={2}>
-              <Button variant="primary" onClick={this.getLocation}>
+              <Button variant="primary" onClick={this.getLocation} onClick={this.getWeather}>
                 Explore!
               </Button>
             </Col>
@@ -64,6 +79,10 @@ class App extends Component {
                 <h4>Longitude:</h4>
                 <p>{this.state.location.lon}</p>
               </Col>
+              <Col>
+              <Weather weatherData={weatherData}/>
+
+              </Col>
             </Row>
           </div>
         )}
@@ -76,6 +95,5 @@ class App extends Component {
       </div>
     );
   }
-}
 
 export default App;
