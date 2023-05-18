@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { Button, Form, Col, Row } from 'react-bootstrap';
 import './App.css';
+import Weather from './Weather';
 
 class App extends Component {
   state = {
@@ -28,7 +29,7 @@ class App extends Component {
 
     try {
       let response = await axios.get(API).then((res) => {
-        this.setWeather(res.data);
+        this.setWeather(response.data);
       });
     } catch (e) {
       // Handle the error here
