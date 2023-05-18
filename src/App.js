@@ -15,8 +15,9 @@ class App extends Component {
 setWeather = (val) =>
 this.setState({findWeather: val});
 
+// make a varible for the api call for it to determine whether or not to use the host or the localhost
   getWeather = async (e) => {
-    const API = `https://city-explorer-lgyr.onrender.com/weather${e.target.value}`; // this is targeting the /weather in the backend
+    const API = `https://city-explorer-lgyr.onrender.com/weather=${e.target.value}`; // this is targeting the /weather in the backend
     try {
       let response = await axios.get(API).then((res) => {
         this.setWeather(res.data);
