@@ -3,37 +3,43 @@ import React, { Component } from 'react';
 import { Button, Form, Col, Row } from 'react-bootstrap';
 import './App.css';
 
-
 class App extends Component {
   state = {
     searchquery: '',
     location: { lat: null, lon: null, display_name: null },
-    mapUrl: ''
+    mapUrl: '',
+    weatherData: null
   };
 
-// getting the weather from server.js
-setWeather = (val) =>
-this.setState({findWeather: val});
+  // getting the weather from server.js
+  setWeather = (val) => {
+    this.setState({ weatherData: val });
+  };
 
-// make a varible for the api call for it to determine whether or not to use the host or the localhost
+  // make a variable for the API call to determine whether to use the host or the localhost
   getWeather = async (e) => {
-    const API = `https://city-explorer-lgyr.onrender.com/weather=${e.target.value}`; // this is targeting the /weather in the backend
+    const useLocalhost = true; // Set this flag to true or false based on your logic
+
+    const host = 'https://city-explorer-lgyr.onrender.com';
+    const localhost = 'http://localhost:3000';
+
+    const baseAPI = useLocalhost ? localhost : host;
+    const API = `${baseAPI}/weather=${e.target.value}`;
+
     try {
       let response = await axios.get(API).then((res) => {
         this.setWeather(res.data);
       });
-    } catch {e} 
+    } catch (e) {
+      // Handle the error here
     }
-  }
+  };
 
-  
   // this is where you put the API key
   getLocation = async () => {
-    // API is being set here with a constant & variable to be able to call it in the functions below
     const API = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_MAP_KEY}&q=${this.state.searchquery}&format=json`;
     const res = await axios.get(API);
     const { lat, lon, display_name } = res.data[0];
-    // this is setting the state to call the props
     this.setState({ location: { lat, lon, display_name } });
 
     const mapAPI = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_MAP_KEY}&center=${lat},${lon}&zoom=13`;
@@ -58,7 +64,7 @@ this.setState({findWeather: val});
               />
             </Col>
             <Col sm={2}>
-              <Button variant="primary" onClick={this.getLocation} onClick={this.getWeather}>
+              <Button variant="primary" onClick={this.getLocation}>
                 Explore!
               </Button>
             </Col>
@@ -70,19 +76,19 @@ this.setState({findWeather: val});
             {/* the text below is calling the API's name with display_name */}
             <h3>The city is: {this.state.location.display_name}!</h3>
             <Row>
-              {/* lat is what its named in the API, the code below is calling the API */}
+              {/* lat is what it's named in the API, the code below is calling the API */}
               <Col>
                 <h4>Latitude:</h4>
                 <p>{this.state.location.lat}</p>
               </Col>
-              {/* lon is what its named in the API, the code below is calling the API */}
+              {/* lon is what it's named in the API, the code below is calling the API */}
               <Col>
                 <h4>Longitude:</h4>
                 <p>{this.state.location.lon}</p>
               </Col>
               <Col>
-              <Weather weatherData={weatherData}/>
-
+                {/* Render the Weather component with weatherData prop */}
+                {this.state.weatherData && <Weather weatherData={this.state.weatherData} />}
               </Col>
             </Row>
           </div>
@@ -96,5 +102,6 @@ this.setState({findWeather: val});
       </div>
     );
   }
+}
 
 export default App;
