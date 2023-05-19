@@ -9,7 +9,7 @@ function Weather(props) {
             <CardGroup>
                 <Card id="Day1">
                     <Card.Title>
-                        {props.weatherData[0].data}
+                        {props.weatherData[0].date}
                     </Card.Title>
                     <Card.Text>
                         {props.weatherData[0].description}
@@ -23,7 +23,7 @@ function Weather(props) {
             <CardGroup>
                 <Card id="Day2">
                     <Card.Title>
-                        {props.weatherData[1].data}
+                        {props.weatherData[1].date}
                     </Card.Title>
                     <Card.Text>
                         {props.weatherData[1].description}
@@ -37,7 +37,7 @@ function Weather(props) {
             <CardGroup>
                 <Card id="Day3">
                     <Card.Title>
-                        {props.weatherData[2].data}
+                        {props.weatherData[2].date}
                     </Card.Title>
                     <Card.Text>
                         {props.weatherData[2].description}
