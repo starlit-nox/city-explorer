@@ -19,10 +19,10 @@ class App extends Component {
 
   // make a variable for the API call to determine whether to use the host or the localhost
   getWeather = async (e) => {
-    const useLocalhost = true; // Set this flag to true or false based on your logic
+    const useLocalhost = false; // Set this flag to true or false based on your logic
 
     const host = 'https://city-explorer-lgyr.onrender.com';
-    const localhost = 'http://localhost:3000';
+    const localhost = 'http://localhost:3003';
 
     const baseAPI = useLocalhost ? localhost : host;
     const API = `${baseAPI}/weather=${e.target.value}`;
