@@ -18,21 +18,24 @@ class App extends Component {
   };
 
   // make a variable for the API call to determine whether to use the host or the localhost
-  getWeather = async (e) => {
+  // you have to call the parameteres into the function () calls them
+  getWeather = async (city_name, lat, lon) => {
     const useLocalhost = false; // Set this flag to true or false based on your logic
 
     const host = 'https://city-explorer-lgyr.onrender.com';
     const localhost = 'http://localhost:3003';
 
     const baseAPI = useLocalhost ? localhost : host;
-    const API = `${baseAPI}/weather=${e.target.value}`;
+    // place the parameteres into here in the style of the url
+    const API = `${baseAPI}/weather?city_name=${city_name}&lat=${lat}&lon=${lon}`;
 
     try {
-      let response = await axios.get(API).then((res) => {
-        this.setWeather(response.data);
+      // the resonse in axios pulls the function from the backend api (city-explorer-api)
+      await axios.get(API).then((res) => {
+        this.setWeather(res.data);
       });
     } catch (e) {
-      // Handle the error here
+      // this is catching the error, (e) represents teh error
     }
   };
 
@@ -45,6 +48,10 @@ class App extends Component {
 
     const mapAPI = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_MAP_KEY}&center=${lat},${lon}&zoom=13`;
     this.setState({ mapUrl: mapAPI });
+
+    // use this.state.searchquery bc when you search it'll pull it from the URL
+    // getWeather needs that info through it to work, searchquery = city_name
+    this.getWeather(this.state.searchquery, lat, lon);
   };
 
   render() {
