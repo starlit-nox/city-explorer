@@ -7,7 +7,7 @@ function Weather(props) {
         <>
         {/* do NOT try to pull it from the backend with getWeather. use the front end weatherData bc axios is pulling the data for that function */}
             <CardGroup>
-                <Card id="Day1">
+                <Card id="Day1" border="dark" color="white">
                     <Card.Title>
                         {props.weatherData[0].date}
                     </Card.Title>
@@ -21,7 +21,7 @@ function Weather(props) {
             </CardGroup>
 
             <CardGroup>
-                <Card id="Day2">
+                <Card id="Day2" border="dark" color="white">
                     <Card.Title>
                         {props.weatherData[1].date}
                     </Card.Title>
@@ -35,7 +35,7 @@ function Weather(props) {
             </CardGroup>
 
             <CardGroup>
-                <Card id="Day3">
+                <Card id="Day3" border="dark" color="white">
                     <Card.Title>
                         {props.weatherData[2].date}
                     </Card.Title>
