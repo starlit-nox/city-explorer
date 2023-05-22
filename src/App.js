@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { Button, Form, Col, Row } from 'react-bootstrap';
 import './App.css';
 import Weather from './Weather';
+import Movies from './Movies';
+
 
 class App extends Component {
   state = {
@@ -108,6 +110,9 @@ class App extends Component {
               </Col>
               <Col>
                 {this.state.weatherData && <Weather weatherData={this.state.weatherData} />}
+              </Col>
+              <Col>
+                {this.state.movieData && <Movies movieData={this.state.movieData} />}
               </Col>
             </Row>
           </div>
