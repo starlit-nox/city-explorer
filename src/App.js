@@ -5,36 +5,37 @@ import './App.css';
 import Weather from './Weather';
 import Movies from './Movies';
 
-
 class App extends Component {
   state = {
     searchquery: '',
     location: { lat: null, lon: null, display_name: null },
     mapUrl: '',
-    weatherData: null,
-    movieData: null
+    forecast: null,
+    movies: null,
+    error: null
   };
 
   getLocation = async () => {
     try {
       const API = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.searchquery}&format=json`;
       const res = await axios.get(API);
-      const { lat, lon, city_name } = res.data[0];
+      const { lat, lon, display_name } = res.data[0];
 
-      const weatherAPI = `https://city-explorer-lgyr.onrender.com/weather?lat=${lat}&lon=${lon}&searchquery=${this.state.searchquery}`;
+      const weatherAPI = `https://city-explorer-lgyr.onrender.com/weather?lat=${lat}&lon=${lon}&city_name=${this.state.searchquery}`;
       const weatherRes = await axios.get(weatherAPI);
-      // Handle the response from the /weather endpoint
-      this.setState({ location: { lat, lon, displayName: city_name }, mapUrl: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${lat},${lon}`, forecast: weatherRes.data });
+      this.setState({
+        location: { lat, lon, display_name },
+        mapUrl: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${lat},${lon}`,
+        forecast: weatherRes.data
+      });
 
       const movieAPI = `https://city-explorer-lgyr.onrender.com/movies?searchquery=${this.state.searchquery}`;
       const movieRes = await axios.get(movieAPI);
-      this.setState({movies: movieRes.data});
-
+      this.setState({ movies: movieRes.data, error: null });
     } catch (error) {
-      this.setState({ error })
+      this.setState({ error });
     }
   };
-
 
   render() {
     return (
@@ -73,12 +74,8 @@ class App extends Component {
                 <h4>Longitude:</h4>
                 <p>{this.state.location.lon}</p>
               </Col>
-              <Col>
-                {this.state.weatherData && <Weather weatherData={this.state.weatherData} />}
-              </Col>
-              <Col>
-                {this.state.movieData && <Movies movieData={this.state.movieData} />}
-              </Col>
+              <Col>{this.state.forecast && <Weather weatherData={this.state.forecast} />}</Col>
+              <Col>{this.state.movies && <Movies movieData={this.state.movies} />}</Col>
             </Row>
           </div>
         )}
@@ -88,6 +85,8 @@ class App extends Component {
             <img src={this.state.mapUrl} alt="Map of city" />
           </div>
         )}
+
+        {this.state.error && <p>An error occurred while fetching data.</p>}
       </div>
     );
   }
