@@ -27,33 +27,41 @@ class App extends Component {
     const useLocalhost = false;
     const host = 'https://city-explorer-lgyr.onrender.com';
     const localhost = 'http://localhost:3003';
-
+  
     const baseAPI = useLocalhost ? localhost : host;
     const weatherAPI = `${baseAPI}/weather?city_name=${city_name}&lat=${lat}&lon=${lon}`;
-
+  
     try {
       const res = await axios.get(weatherAPI);
-      this.setWeather(res.data);
+      const weatherData = res.data;
+  
+      console.log('Weather:', weatherData); // Log weather as an array
+  
+      this.setWeather(weatherData);
     } catch (e) {
       console.log(e);
     }
   };
-
+  
   getMovies = async (city_name) => {
     const useLocalhost = false;
     const host = 'https://city-explorer-lgyr.onrender.com';
     const localhost = 'http://localhost:3003';
-
+  
     const baseAPI = useLocalhost ? localhost : host;
     const moviesAPI = `${baseAPI}/movies?city_name=${city_name}`;
-
+  
     try {
       const res = await axios.get(moviesAPI);
-      this.setMovies(res.data);
+      const movieData = res.data;
+  
+      console.log('Movies:', movieData); // Log movies as an array
+  
+      this.setMovies(movieData);
     } catch (e) {
       console.log(e);
     }
-  };
+  };  
 
   getLocation = async () => {
     const API = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_MAP_KEY}&q=${this.state.searchquery}&format=json`;
