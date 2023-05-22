@@ -7,9 +7,9 @@ import Movies from './Movies';
 
 class App extends Component {
   state = {
-    searchquery: '',
+    searchquery: ``,
     location: { lat: null, lon: null, display_name: null },
-    mapUrl: '',
+    mapUrl: ``,
     forecast: null,
     movies: null,
     error: null
@@ -17,9 +17,9 @@ class App extends Component {
 
   getLocation = async () => {
     try {
-      // const API = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.searchquery}&format=json`;
-      // const res = await axios.get(API);
-      // const { lat, lon, display_name } = res.data[0];
+      const API = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.searchquery}&format=json`;
+      const res = await axios.get(API);
+      const { lat, lon, display_name } = res.data[0];
 
       const weatherAPI = `https://city-explorer-lgyr.onrender.com/weather?lat=${lat}&lon=${lon}&city_name=${this.state.searchquery}`;
       const weatherRes = await axios.get(weatherAPI);
