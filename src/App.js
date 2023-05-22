@@ -15,69 +15,26 @@ class App extends Component {
     movieData: null
   };
 
-  setWeather = (val) => {
-    this.setState({ weatherData: val });
-  };
-
-  setMovies = (val) => {
-    this.setState({ movieData: val });
-  };
-
-  getWeather = async (city_name, lat, lon) => {
-    const useLocalhost = false;
-    const host = 'https://city-explorer-lgyr.onrender.com';
-    const localhost = 'http://localhost:3003';
-  
-    const baseAPI = useLocalhost ? localhost : host;
-    const weatherAPI = `${baseAPI}/weather?city_name=${city_name}&lat=${lat}&lon=${lon}`;
-  
-    try {
-      const res = await axios.get(weatherAPI);
-      const weatherData = res.data;
-  
-      console.log('Weather:', weatherData); // Log weather as an array
-  
-      this.setWeather(weatherData);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  
-  getMovies = async (city_name) => {
-    const useLocalhost = false;
-    const host = 'https://city-explorer-lgyr.onrender.com';
-    const localhost = 'http://localhost:3003';
-  
-    const baseAPI = useLocalhost ? localhost : host;
-    const moviesAPI = `${baseAPI}/movies?city_name=${city_name}`;
-  
-    try {
-      const res = await axios.get(moviesAPI);
-      const movieData = res.data;
-  
-      console.log('Movies:', movieData); // Log movies as an array
-  
-      this.setMovies(movieData);
-    } catch (e) {
-      console.log(e);
-    }
-  };  
-
   getLocation = async () => {
-    const API = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_MAP_KEY}&q=${this.state.searchquery}&format=json`;
     try {
+      const API = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.searchquery}&format=json`;
       const res = await axios.get(API);
-      const { lat, lon, display_name } = res.data[0];
-      this.setState({ location: { lat, lon, display_name } });
+      const { lat, lon, city_name } = res.data[0];
 
-      const mapAPI = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_MAP_KEY}&center=${lat},${lon}&zoom=13`;
-      this.setState({ mapUrl: mapAPI });
+      const weatherAPI = `https://city-explorer-lgyr.onrender.com/weather?lat=${lat}&lon=${lon}&searchquery=${this.state.searchquery}`;
+      const weatherRes = await axios.get(weatherAPI);
+      // Handle the response from the /weather endpoint
+      this.setState({ location: { lat, lon, displayName: city_name }, mapUrl: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${lat},${lon}`, forecast: weatherRes.data });
 
-      this.getWeather(this.state.searchquery, lat, lon);
-    } catch (e) {
-      console.log(e);
+      const movieAPI = `https://city-explorer-lgyr.onrender.com/movies?searchquery=${this.state.searchquery}`;
+      const movieRes = await axios.get(movieAPI);
+      this.setState({movies: movieRes.data});
+
+    } catch (error) {
+      this.setState({ error })
     }
   };
+
 
   render() {
     return (
