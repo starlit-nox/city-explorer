@@ -6,7 +6,7 @@ function Movies(props) {
     return (
         <>
             {props.movieData && props.movieData.length > 0 && (
-                <CardGroup>
+                <CardGroup className="text-white">
                     {props.movieData.map((movie, index) => (
                         <Card key={index} id={`Movie${index + 1}`} border="dark">
                             <Card.Img variant="top" src={movie.image_url} />
