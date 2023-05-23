@@ -35,7 +35,9 @@ button{
 }
 
 .card.custom-class {
-  background-color: rgb(245, 243, 243);
+  background-color: whitesmoke;
   max-width: 60%;
   margin: auto;
+  border: solid;
+  border-color: whitesmoke;
 }
