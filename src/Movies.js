@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
+import './App.css';
 
 function Movies(props) {
     return (
@@ -8,7 +9,7 @@ function Movies(props) {
             {props.movieData && props.movieData.length > 0 && (
                 <CardGroup className="text-white">
                     {props.movieData.map((movie, index) => (
-                        <Card className="card" key={index} id={`Movie${index + 1}`} border="dark">
+                        <Card className="custom-class" key={index} id={`Movie${index + 1}`} border="dark">
                             <Card.Img variant="top" src={movie.image_url} />
                             <Card.Body>
                                 <Card.Title>{movie.title}</Card.Title>

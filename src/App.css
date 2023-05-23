@@ -33,6 +33,6 @@ button{
   margin: 20px 0px 0px 50px
 }
 
-.card{
-  background-color: rgb(203, 213, 213);
+.card.custom-class {
+  background-color: rgb(245, 243, 243);
 }
