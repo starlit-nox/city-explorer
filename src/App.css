@@ -13,6 +13,7 @@ h1 {
 body {
   /* background-color: rgb(158, 184, 131); */
   background-image: url(city-img.png);
+  background-attachment: fixed;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -35,4 +36,6 @@ button{
 
 .card.custom-class {
   background-color: rgb(245, 243, 243);
+  max-width: 60%;
+  margin: auto;
 }
