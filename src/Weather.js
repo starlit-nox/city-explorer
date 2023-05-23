@@ -9,7 +9,7 @@ function Weather(props) {
             {props.weatherData && props.weatherData.length >= 3 && (
                 <>
                     <CardGroup className="text-white">
-                        <Card id="Day1" border="dark">
+                        <Card className="custom-class" id="Day1" border="dark">
                             <Card.Title>{props.weatherData[0].date}</Card.Title>
                             <Card.Text>{props.weatherData[0].description}</Card.Text>
                             <Card.Footer>
@@ -19,7 +19,7 @@ function Weather(props) {
                     </CardGroup>
 
                     <CardGroup className="text-white">
-                        <Card id="Day2" border="dark">
+                        <Card className="custom-class" id="Day2" border="dark">
                             <Card.Title>{props.weatherData[1].date}</Card.Title>
                             <Card.Text>{props.weatherData[1].description}</Card.Text>
                             <Card.Footer>
@@ -29,7 +29,7 @@ function Weather(props) {
                     </CardGroup>
 
                     <CardGroup className="text-white">
-                        <Card id="Day3" border="dark">
+                        <Card className="custom-class" id="Day3" border="dark">
                             <Card.Title>{props.weatherData[2].date}</Card.Title>
                             <Card.Text>{props.weatherData[2].description}</Card.Text>
                             <Card.Footer>
@@ -39,7 +39,7 @@ function Weather(props) {
                     </CardGroup>
 
                     <CardGroup className="text-white">
-                        <Card id="Day4" border="dark">
+                        <Card className="custom-class" id="Day4" border="dark">
                             <Card.Title>{props.weatherData[2].date}</Card.Title>
                             <Card.Text>{props.weatherData[2].description}</Card.Text>
                             <Card.Footer>
@@ -49,7 +49,7 @@ function Weather(props) {
                     </CardGroup>
 
                     <CardGroup className="text-white">
-                        <Card id="Day5" border="dark">
+                        <Card className="custom-class" id="Day5" border="dark">
                             <Card.Title>{props.weatherData[2].date}</Card.Title>
                             <Card.Text>{props.weatherData[2].description}</Card.Text>
                             <Card.Footer>
@@ -59,7 +59,7 @@ function Weather(props) {
                     </CardGroup>
 
                     <CardGroup className="text-white">
-                        <Card id="Day6" border="dark">
+                        <Card className="custom-class" id="Day6" border="dark">
                             <Card.Title>{props.weatherData[2].date}</Card.Title>
                             <Card.Text>{props.weatherData[2].description}</Card.Text>
                             <Card.Footer>
@@ -69,7 +69,7 @@ function Weather(props) {
                     </CardGroup>
 
                     <CardGroup className="text-white">
-                        <Card id="Day7" border="dark">
+                        <Card className="custom-class" id="Day7" border="dark">
                             <Card.Title>{props.weatherData[2].date}</Card.Title>
                             <Card.Text>{props.weatherData[2].description}</Card.Text>
                             <Card.Footer>
