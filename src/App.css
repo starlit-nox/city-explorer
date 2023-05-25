@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Rye');
+/* the code above is importing the custom font for the title */
 
 h1 {
-  font-family: 'Rye', cursive;
+  font-family: 'Rye', cursive;  /* Said custom font that's imported */
   color: rgb(7, 22, 27);
   font-size: xx-large;
 }
@@ -11,9 +12,8 @@ h1 {
 }
 
 body {
-  /* background-color: rgb(158, 184, 131); */
   background-image: url(city-img.png);
-  background-attachment: fixed;
+  background-attachment: fixed;   /* fixed is what's keeping the image from tiling */
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -34,6 +34,9 @@ button{
   margin: 20px 0px 0px 50px
 }
 
+/* this is working as the backgrounds as the card */
+/* PERSONAL STRETCH TO DO: add a space betwen the cards?? */
+/* PERSONAL STRETCH TO DO: figure out how to set them in rows??? */
 .card.custom-class {
   background-color: whitesmoke;
   max-width: 60%;
